@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Fb-messenger/static/css/main.0fe8e0f3.css",
+    "main.js": "/Fb-messenger/static/js/main.2512a6d4.js",
+    "static/js/453.b4886f27.chunk.js": "/Fb-messenger/static/js/453.b4886f27.chunk.js",
+    "index.html": "/Fb-messenger/index.html",
+    "main.0fe8e0f3.css.map": "/Fb-messenger/static/css/main.0fe8e0f3.css.map",
+    "main.2512a6d4.js.map": "/Fb-messenger/static/js/main.2512a6d4.js.map",
+    "453.b4886f27.chunk.js.map": "/Fb-messenger/static/js/453.b4886f27.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0fe8e0f3.css",
+    "static/js/main.2512a6d4.js"
+  ]
+}
