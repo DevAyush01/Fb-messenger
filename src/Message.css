@@ -9,8 +9,7 @@
     text-align: left;
 }
 .message__userCard{
-    background-color: navy;
-    margin: 50px;
+    background-color: blue;
 }
 .message__guestCard{
     background-color: yellow;

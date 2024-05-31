@@ -4,13 +4,20 @@ import SendIcon from '@mui/icons-material/Send';
 import { FormControl, InputLabel , Input } from '@mui/material';
 import './App.css';
 import Message from './Message';
+import db from './Firebase';
 
 function App() {
   const [input,setInput] = useState('');
-  const [messages,setMessages] = useState([{username: 'Ayush',text: 'Hey'},
-    {username: 'Vinayak',text : 'Hello '}
+  const [messages,setMessages] = useState([{username: 'Ayush',message: 'Hey'},
+    {username: 'Vinayak',message : 'Hello '}
   ]);
   const [username,setUsername] = useState('');
+
+  useEffect(()=>{
+     db.collection('messages').onSnapshot(snapshot =>{
+      setMessages(snapshot.docs.map(doc => doc.data()))
+     })
+  },[])
 
   useEffect(()=>{
     setUsername(prompt('Enter your name'));
