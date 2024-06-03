@@ -5,17 +5,35 @@ import { FormControl, InputLabel , Input } from '@mui/material';
 import './App.css';
 import Message from './Message';           
 import app from "./Firebase"
-import {getDatabase , ref , set , push} from "firebase/database"
+import { db } from './Firebase';
+import {getDatabase , ref , set , push, get, onValue} from "firebase/database"
 function App() {
   const [input,setInput] = useState('');
   const [messages,setMessages] = useState([]);
   const [username,setUsername] = useState('');
 
+  // const readData = async ()=>{
+  //   const db = getDatabase(app);
+  //   const dbRef = ref(db , "messages/users");
+  //   const snapshot = await get(dbRef);
+  //   if(snapshot.exists()){
+  //     setMessages(Object.values(snapshot.val()))
+  //   }else{
+  //     alert("Something wrong!")
+  //   }
+  // }
 
   useEffect(()=>{
-     app.collection('messages').onSnapshot(snapshot =>{
-      setMessages(snapshot.docs.map(doc => doc.data()))
-     })
+    onValue(ref(db), (snapshot) =>{
+      setMessages([]);
+      const data = snapshot.val();
+
+      if(data !=null){
+        Object.values(data).map((input)=>{
+          setMessages((oldArray) => [...oldArray, input])
+        });
+      }
+    })
   },[])
 
   useEffect(()=>{
@@ -85,8 +103,11 @@ function App() {
 
       <div>
       {
-      messages.map( message =>(
-        <Message username={username} message={message}/>
+      messages.map( (input) =>(
+        // <Message username={username} message={messages}/>
+        <div>
+          {input.username}
+        </div>
       ))
       }
       </div>

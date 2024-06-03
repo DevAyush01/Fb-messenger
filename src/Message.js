@@ -23,7 +23,7 @@ function Message({message, username}) {
       <Card className={isUser ? 'message__userCard' : 'message__guestCard'}>
       <CardContent>
         <Typography>
-        {message.username} : {message.message}
+        {message.username} : {message.messages}
         </Typography>
       </CardContent>
     </Card>
