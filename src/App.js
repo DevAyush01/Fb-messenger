@@ -7,34 +7,37 @@ import Message from './Message';
 import app from "./Firebase"
 import { db } from './Firebase';
 import {getDatabase , ref , set , push, get, onValue} from "firebase/database"
+
+
+
 function App() {
   const [input,setInput] = useState('');
   const [messages,setMessages] = useState([]);
   const [username,setUsername] = useState('');
 
-  // const readData = async ()=>{
-  //   const db = getDatabase(app);
-  //   const dbRef = ref(db , "messages/users");
-  //   const snapshot = await get(dbRef);
-  //   if(snapshot.exists()){
-  //     setMessages(Object.values(snapshot.val()))
-  //   }else{
-  //     alert("Something wrong!")
-  //   }
-  // }
+  const readData = async ()=>{
+    const db = getDatabase(app);
+    const dbRef = ref(db , "messages/users");
+    const snapshot = await get(dbRef);
+    if(snapshot.exists()){
+      setMessages(Object.values(snapshot.val()))
+    }else{
+      alert("Something wrong!")
+    }
+  }
 
-  useEffect(()=>{
-    onValue(ref(db), (snapshot) =>{
-      setMessages([]);
-      const data = snapshot.val();
+  // useEffect(()=>{
+  //   onValue(ref(db), (snapshot) =>{
+  //     setMessages([]);
+  //     const data = snapshot.val();
 
-      if(data !=null){
-        Object.values(data).map((input)=>{
-          setMessages((oldArray) => [...oldArray, input])
-        });
-      }
-    })
-  },[])
+  //     if(data !=null){
+  //       Object.values(data).map((input)=>{
+  //         setMessages((oldArray) => [...oldArray, input])
+  //       });
+  //     }
+  //   })
+  // },[])
 
   useEffect(()=>{
     setUsername(prompt('Enter your name'));
@@ -50,10 +53,11 @@ function App() {
        const newDocRef = push(ref(db,"messages/users"));
        set(newDocRef , {
            username: username,
-           messages: input,
+           message: input,
        } ).then( ()=>{
         alert("data saved successfully")
        })
+
 
       //  db.collection('messages').add({
       //   message: input,
@@ -102,11 +106,12 @@ function App() {
 
 
       <div>
+        <button onClick={readData}>showData</button>
       {
-      messages.map( (input) =>(
-        // <Message username={username} message={messages}/>
+      messages.map( (message) =>(   
+        // <Message username={message.username} message={message.messages}/>
         <div>
-          {input.username}
+          {message.username} : {message.messages}
         </div>
       ))
       }
