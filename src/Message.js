@@ -2,14 +2,57 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+
 import React from 'react'
 import './Message.css'
 
-function Message({message, username}) {
-    const isUser = username === message.username
+function Message({message , username}) {
+  const isUser = username === message.username;
   return (
-    <div className={`message ${isUser && 'message__user'}`}>
-      {/* <Card className={isUser ? 'message__userCard' : 'message__guestCard'}>
+       <div className={`message ${isUser && 'messageUser'}`}>
+           <Card className={isUser ? "message__userCard" : "message__guestCard"}>
+             <CardContent>
+               <Typography
+               color="black"
+               variant='h5'
+               component='h2'
+               >
+               {message.username} : {message.message}
+               </Typography>
+             </CardContent>
+           </Card>
+    </div>
+  )
+}
+
+
+
+// function Message({username,message}) {
+//     const isUser = username === message.username
+//   return (
+//      <div className={`message ${isUser && 'message__user'}`}>
+      
+//       <Card className={isUser ? 'message__userCard' : 'message__guestCard'}>
+//       <CardContent>
+//         <Typography
+//         color="black"
+//         variant='h5'
+//         component='h2'
+//         >
+//         {message.username} : {message.message}
+//         </Typography>
+//       </CardContent>
+//     </Card>
+
+
+//      </div>
+//     // <>
+//     // {props.username} : {props.message}
+//     // </>
+  
+//   )
+// }
+/* <Card className={isUser ? 'message__userCard' : 'message__guestCard'}>
        <CardContent>
         <Typography
         color="black"
@@ -19,19 +62,5 @@ function Message({message, username}) {
         {message.username} : {message.text}
         </Typography>
        </CardContent>
-     </Card> */}
-      <Card className={isUser ? 'message__userCard' : 'message__guestCard'}>
-      <CardContent>
-        <Typography>
-        {message.username} : {message.messages}
-        </Typography>
-      </CardContent>
-    </Card>
-
-
-    </div>
-  
-  )
-}
-
+     </Card> */
 export default Message

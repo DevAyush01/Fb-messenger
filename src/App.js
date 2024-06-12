@@ -6,38 +6,32 @@ import './App.css';
 import Message from './Message';           
 import app from "./Firebase"
 import { db } from './Firebase';
-import {getDatabase , ref , set , push, get, onValue} from "firebase/database"
+import {getDatabase , ref , set , push, get, onValue, child} from "firebase/database"
+import { collection, onSnapshot } from 'firebase/firestore';
 
 
 
 function App() {
   const [input,setInput] = useState('');
-  const [messages,setMessages] = useState([]);
+  const [messages,setMessages] = useState([{username : 'ayush', message:'hey'},{username : 'vinayak', message:'hello'}]);
   const [username,setUsername] = useState('');
 
-  const readData = async ()=>{
-    const db = getDatabase(app);
-    const dbRef = ref(db , "messages/users");
-    const snapshot = await get(dbRef);
-    if(snapshot.exists()){
-      setMessages(Object.values(snapshot.val()))
-    }else{
-      alert("Something wrong!")
-    }
-  }
+  // const readData = async ()=>{
+  //   const db = getDatabase(app);
+  //   const dbRef = ref(db , "messages/users");
+  //   const snapshot = await get(dbRef);
+  //   if(snapshot.exists()){
+  //     setMessages(Object.values(snapshot.val()))
+  //   }else{
+  //     alert("Something wrong!")
+  //   }
+  // }
+   useEffect( ()=> {
 
-  // useEffect(()=>{
-  //   onValue(ref(db), (snapshot) =>{
-  //     setMessages([]);
-  //     const data = snapshot.val();
+    
+   },[])
 
-  //     if(data !=null){
-  //       Object.values(data).map((input)=>{
-  //         setMessages((oldArray) => [...oldArray, input])
-  //       });
-  //     }
-  //   })
-  // },[])
+
 
   useEffect(()=>{
     setUsername(prompt('Enter your name'));
@@ -57,35 +51,7 @@ function App() {
        } ).then( ()=>{
         alert("data saved successfully")
        })
-
-
-      //  db.collection('messages').add({
-      //   message: input,
-      //   username: username,
-      //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      //  })
-
-
-    //   const{username,message} = messages
-
-    // const res =  fetch(
-    //   "https://facebook-messenger-clone-54e62-default-rtdb.firebaseio.com/userDataRecords.json",
-    //  {
-    //     method : "POST",
-    //     Headers : {
-    //     "Content-Type" : "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       username,
-    //       message
-    //     })
-    //  }
-    //   );
-    //   if(res){
-    //     alert("Data Stored")
-    //   }else{
-    //     alert("Please fill Data")
-    //   }
+        //setMessages([...messages, {username: username, message: input}])
        
         setInput('');
         
@@ -105,17 +71,17 @@ function App() {
        </form>
 
 
-      <div>
-        <button onClick={readData}>showData</button>
+        {/* <button onClick={readData}>show</button> */}
       {
-      messages.map( (message) =>(   
-        // <Message username={message.username} message={message.messages}/>
-        <div>
-          {message.username} : {message.messages}
-        </div>
-      ))
+      
+      messages.map( message =>
+      (      
+           <Message  username={username} message={message} />
+        )
+      
+      )
       }
-      </div>
+      
     </div>
   );
 }
