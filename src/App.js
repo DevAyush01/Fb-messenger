@@ -26,10 +26,18 @@ function App() {
   //     alert("Something wrong!")
   //   }
   // }
-   useEffect( ()=> {
-
-    
-   },[])
+   
+  useEffect(() => {
+    try {
+      db.ref("messages/users").once("value", (snapshot) => {
+        snapshot.forEach((dataSnapshot) => {
+          console.log("datasnapshot", dataSnapshot);
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
 
 
@@ -51,7 +59,7 @@ function App() {
        } ).then( ()=>{
         alert("data saved successfully")
        })
-        //setMessages([...messages, {username: username, message: input}])
+        setMessages([...messages, {username: username, message: input}])
        
         setInput('');
         
