@@ -15,32 +15,32 @@ function App() {
   const [input,setInput] = useState('');
   const [messages,setMessages] = useState([{username : 'ayush', message:'hey'},{username : 'vinayak', message:'hello'}]);
   const [username,setUsername] = useState('');
-
-  // const readData = async ()=>{
-  //   const db = getDatabase(app);
-  //   const dbRef = ref(db , "messages/users");
-  //   const snapshot = await get(dbRef);
-  //   if(snapshot.exists()){
-  //     setMessages(Object.values(snapshot.val()))
-  //   }else{
-  //     alert("Something wrong!")
-  //   }
-  // }
    
   useEffect(() => {
-    try {
-      db.ref("messages/users").once("value", (snapshot) => {
-        snapshot.forEach((dataSnapshot) => {
-          console.log("datasnapshot", dataSnapshot);
-        });
-      });
-    } catch (error) {
-      console.error(error);
-    }
+
+    const dbRef = ref(getDatabase())
+
+    get(child(dbRef,"messages/users")).then(snapshot =>{
+     if (snapshot.exists()) {
+      const data=snapshot.val()
+      Object.values(data).forEach(mess =>{
+        setMessages(prev => [...prev, mess])
+      })
+     } else {
+      console.log("No data")
+     }
+    })
+    // try {
+    //   db.ref("messages/users").onSnapshot( (snapshot) => {
+    //     snapshot.forEach((dataSnapshot) => {
+    //       setMessages(dataSnapshot.docs.map(doc=>doc.data))
+    //     });
+    //   });
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }, []);
-
-
-
+  
   useEffect(()=>{
     setUsername(prompt('Enter your name'));
   },[])
