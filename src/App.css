@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.app_form{
+  padding: 20px;
+ position: fixed;
+ bottom: 20px;
+ z-index: 1;
+ background-color: #e9e9eb;
+ /* display: flex; */
+ width: 100%;
+ margin: 20px;
+}
