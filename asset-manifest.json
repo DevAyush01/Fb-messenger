@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Fb-messenger/static/css/main.698a6fc6.css",
-    "main.js": "/Fb-messenger/static/js/main.ae85b4c6.js",
+    "main.css": "/Fb-messenger/static/css/main.7aa1ff94.css",
+    "main.js": "/Fb-messenger/static/js/main.a2bfe833.js",
     "static/js/453.b4886f27.chunk.js": "/Fb-messenger/static/js/453.b4886f27.chunk.js",
     "index.html": "/Fb-messenger/index.html",
-    "main.698a6fc6.css.map": "/Fb-messenger/static/css/main.698a6fc6.css.map",
-    "main.ae85b4c6.js.map": "/Fb-messenger/static/js/main.ae85b4c6.js.map",
+    "main.7aa1ff94.css.map": "/Fb-messenger/static/css/main.7aa1ff94.css.map",
+    "main.a2bfe833.js.map": "/Fb-messenger/static/js/main.a2bfe833.js.map",
     "453.b4886f27.chunk.js.map": "/Fb-messenger/static/js/453.b4886f27.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.698a6fc6.css",
-    "static/js/main.ae85b4c6.js"
+    "static/css/main.7aa1ff94.css",
+    "static/js/main.a2bfe833.js"
   ]
 }
