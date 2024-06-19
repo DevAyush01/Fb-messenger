@@ -41,7 +41,6 @@ function App() {
   const sendMessage= async (event)=>{
        event.preventDefault();
        
-
        const db = getDatabase(app);
        const newDocRef = push(ref(db,"messages/users"));
        set(newDocRef , {
@@ -64,7 +63,7 @@ function App() {
        <FormControl className="app__formcontrol">
          <Input className='app__input' placeholder='Enter a message...' value={input} onChange={event=>setInput(event.target.value)}/>
          <IconButton className='app__iconButton' disabled={!input} type='submit' variant='contained' color='primary' onClick={sendMessage}>
-          <SendIcon variant="contained"/>
+         <SendIcon variant="contained"/>
          </IconButton>
        </FormControl>
        </form>
@@ -74,13 +73,11 @@ function App() {
       <FlipMove className='flipp'>
       {
       messages.map( message =>
-      (      
+        (      
            <Message  username={username} message={message} />
         )
-      
       )
       }
-         
       </FlipMove>
       
     </div>
