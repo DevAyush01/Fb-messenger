@@ -9,8 +9,6 @@ import { IconButton } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 
-
-
 function App() {
   const [input,setInput] = useState('');
   const [messages,setMessages] = useState([]);
@@ -77,7 +75,6 @@ function App() {
       )
       }
       </FlipMove>
-      
     </div>
     </>
   );
