@@ -48,7 +48,7 @@ function App() {
         setMessages([...messages, {username: username, message: input}])
        
         setInput('');
-  }
+  }     
   return (
     <>
     <div className="App">
@@ -73,6 +73,7 @@ function App() {
            <Message  username={username} message={message} />
         )
       )
+      
       }
       </FlipMove>
     </div>
